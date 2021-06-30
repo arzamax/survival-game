@@ -4,8 +4,8 @@ import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin';
 import { MainScene } from './scenes';
 
 export const gameConfig: Phaser.Types.Core.GameConfig = {
-  width: 256,
-  height: 256,
+  width: 512,
+  height: 512,
   type: Phaser.AUTO,
   parent: 'survival-game',
   scene: [MainScene],
