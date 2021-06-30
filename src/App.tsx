@@ -3,10 +3,6 @@ import { IonPhaser } from '@ion-phaser/react'
 
 import { gameConfig } from './game-config';
 
-function App() {
-  return (
-    <IonPhaser game={gameConfig} initialize />
-  );
-}
+const App = () => <IonPhaser key="game" game={gameConfig} initialize />;
 
 export default App;
