@@ -24,7 +24,6 @@ export class MainScene extends Phaser.Scene {
     this.matter.world.convertTilemapLayer(earthLayer);
 
     this.player = new Player(this, 100 , 100, 'player', 'herald_idle_1');
-    new Player(this, 200 , 200, 'player', 'herald_idle_1');
     this.player.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
       down: Phaser.Input.Keyboard.KeyCodes.S,

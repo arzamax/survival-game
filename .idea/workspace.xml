@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8917eb1-c7af-4c92-8ff5-988f64f2abe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/MainScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainScene.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +73,7 @@
       <workItem from="1624966754607" duration="6814000" />
       <workItem from="1624985513573" duration="140000" />
       <workItem from="1624985667086" duration="4315000" />
-      <workItem from="1625039961030" duration="13482000" />
+      <workItem from="1625039961030" duration="15796000" />
     </task>
     <servers />
   </component>
@@ -93,17 +91,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/scenes/MainScene.ts</url>
-          <line>39</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
