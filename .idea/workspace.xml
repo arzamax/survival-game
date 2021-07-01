@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d8917eb1-c7af-4c92-8ff5-988f64f2abe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/map.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/tree.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/MainScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainScene.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,15 +51,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -73,7 +74,9 @@
       <workItem from="1624966754607" duration="6814000" />
       <workItem from="1624985513573" duration="140000" />
       <workItem from="1624985667086" duration="4315000" />
-      <workItem from="1625039961030" duration="15796000" />
+      <workItem from="1625039961030" duration="17107000" />
+      <workItem from="1625124935479" duration="650000" />
+      <workItem from="1625155368940" duration="8389000" />
     </task>
     <servers />
   </component>
