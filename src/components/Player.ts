@@ -1,12 +1,15 @@
 import Phaser from 'phaser';
 
+import { Resource } from './Resource';
+
 export class Player extends Phaser.Physics.Matter.Sprite {
   private readonly weapon: Phaser.GameObjects.Sprite;
   private weaponRotation = 0;
-  public inputKeys?: Record<string, Phaser.Input.Keyboard.Key>;
+  private inputKeys: Record<string, Phaser.Input.Keyboard.Key>;
+  private touching: Resource[] = [];
 
-  constructor(scene: Phaser.Scene, x: number, y: number, texture: string | Phaser.Textures.Texture, frame?: string | number) {
-    super(scene.matter.world, x, y, texture, frame);
+  constructor(scene: Phaser.Scene, x: number, y: number) {
+    super(scene.matter.world, x, y, 'player', 'herald_idle_1');
 
     const { Body, Bodies } = (Phaser.Physics.Matter as any).Matter;
     const playerCollider = Bodies.circle(this.x, this.y, 12, { isSensor: false, label: 'playerCollider' });
@@ -16,6 +19,8 @@ export class Player extends Phaser.Physics.Matter.Sprite {
       frictionAir: 0.5,
     });
 
+    this.createMiningCollision(playerSensor);
+    this.createPickCollision(playerCollider);
     this.setExistingBody(compoundBody);
     this.setFixedRotation();
     this.scene.add.existing(this);
@@ -25,17 +30,71 @@ export class Player extends Phaser.Physics.Matter.Sprite {
     this.weapon.setScale(0.8);
     this.scene.add.existing(this.weapon);
     this.scene.input.on('pointermove', (pointer : { worldX: number }) => this.setFlipX(pointer.worldX < this.x));
+
+    this.inputKeys = this.scene.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    }) as Record<string, Phaser.Input.Keyboard.Key>;
   }
 
-  get velocity() {
+  private get velocity() {
     return this.body.velocity;
   }
 
-  weaponRotate() {
+  private whack() {
+    for (const resource of this.touching) {
+      if (resource.hit && !resource.dead) {
+        resource.hit();
+      }
+    }
+  }
+
+  private weaponRotate() {
     const pointer = this.scene.input.activePointer;
+
+    if (this.weaponRotation >= 100) this.whack();
 
     this.weaponRotation = pointer.isDown && this.weaponRotation < 100 ? this.weaponRotation + 6 : 0;
     this.weapon.setAngle(this.flipX ? -this.weaponRotation - 90 : this.weaponRotation);
+  }
+
+  private createMiningCollision(playerSensor: any) {
+    (this.scene as any).matterCollision?.addOnCollideStart({
+      objectA: [playerSensor],
+      callback: ({ bodyB, gameObjectB }: any) => {
+        if (bodyB.isSensor) return;
+        this.touching.push(gameObjectB);
+      },
+      context: this.scene,
+    });
+
+    (this.scene as any).matterCollision?.addOnCollideEnd({
+      objectA: [playerSensor],
+      callback: ({ gameObjectB }: any) => {
+        this.touching = this.touching.filter(gameObject => gameObject !== gameObjectB);
+      },
+      context: this.scene,
+    });
+  }
+
+  private createPickCollision(playerCollider: any) {
+    (this.scene as any).matterCollision?.addOnCollideStart({
+      objectA: [playerCollider],
+      callback: ({ gameObjectB }: any) => {
+        if (gameObjectB && gameObjectB.pick) gameObjectB.pick();
+      },
+      context: this.scene,
+    });
+
+    (this.scene as any).matterCollision?.addOnCollideActive({
+      objectA: [playerCollider],
+      callback: ({ gameObjectB }: any) => {
+        if (gameObjectB && gameObjectB.pick) gameObjectB.pick();
+      },
+      context: this.scene,
+    });
   }
 
   static preload(scene: Phaser.Scene) {

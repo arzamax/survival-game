@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8917eb1-c7af-4c92-8ff5-988f64f2abe8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/survival-game.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/map.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/map.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Player.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Player.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Resource.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Resource.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game-config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game-config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/MainScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainScene.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +51,19 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -75,7 +85,7 @@
       <workItem from="1625385982216" duration="27000" />
       <workItem from="1625386157918" duration="16000" />
       <workItem from="1625386196862" duration="3625000" />
-      <workItem from="1625397329718" duration="1383000" />
+      <workItem from="1625397329718" duration="10011000" />
     </task>
     <servers />
   </component>
