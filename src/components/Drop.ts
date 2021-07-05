@@ -8,9 +8,9 @@ export class Drop extends Phaser.Physics.Matter.Sprite {
     const circleCollider = Bodies.circle(this.x, this.y, 12, { isSensor: false, label: 'collider' });
 
     this.setExistingBody(circleCollider);
-    this.scene.add.existing(this);
     this.setFrictionAir(1);
     this.setScale(0.5);
+    this.scene.add.existing(this);
   }
 
   public pick() {

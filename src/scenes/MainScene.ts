@@ -29,7 +29,7 @@ export class MainScene extends Phaser.Scene {
       new Resource(this, resource);
     }
 
-    this.player = new Player(this, 100 , 100);
+    this.player = new Player(this, 150 , 150);
   }
 
   update() {

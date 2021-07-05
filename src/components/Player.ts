@@ -1,15 +1,24 @@
 import Phaser from 'phaser';
 
 import { Resource } from './Resource';
+import { MatterEntity } from './MatterEntity';
 
-export class Player extends Phaser.Physics.Matter.Sprite {
+export class Player extends MatterEntity {
   private readonly weapon: Phaser.GameObjects.Sprite;
   private weaponRotation = 0;
   private inputKeys: Record<string, Phaser.Input.Keyboard.Key>;
   private touching: Resource[] = [];
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene.matter.world, x, y, 'player', 'herald_idle_1');
+    super({
+      scene,
+      x,
+      y,
+      texture: 'player',
+      frame: 'herald_idle_1',
+      health: 2,
+      drops: []
+    });
 
     const { Body, Bodies } = (Phaser.Physics.Matter as any).Matter;
     const playerCollider = Bodies.circle(this.x, this.y, 12, { isSensor: false, label: 'playerCollider' });
@@ -23,7 +32,6 @@ export class Player extends Phaser.Physics.Matter.Sprite {
     this.createPickCollision(playerCollider);
     this.setExistingBody(compoundBody);
     this.setFixedRotation();
-    this.scene.add.existing(this);
 
     this.weapon = new Phaser.GameObjects.Sprite(scene, 0, 0, 'items', 162);
     this.weapon.setOrigin(0.25, 0.75);
@@ -37,10 +45,6 @@ export class Player extends Phaser.Physics.Matter.Sprite {
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
     }) as Record<string, Phaser.Input.Keyboard.Key>;
-  }
-
-  private get velocity() {
-    return this.body.velocity;
   }
 
   private whack() {
@@ -103,7 +107,7 @@ export class Player extends Phaser.Physics.Matter.Sprite {
     scene.load.spritesheet('items', '/assets/items.png', { frameWidth: 32, frameHeight: 32 });
   }
 
-  update() {
+  public update() {
     const playerVelocity = new Phaser.Math.Vector2();
 
     if (this.inputKeys?.left.isDown) {
