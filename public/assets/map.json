@@ -1445,9 +1445,66 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"enemies",
+         "objects":[
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":161,
+                 "name":"bandit",
+                 "properties":[
+                        {
+                         "name":"drops",
+                         "type":"string",
+                         "value":"[241,280]"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":10
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":32,
+                 "y":160
+                }, 
+                {
+                 "gid":4,
+                 "height":32,
+                 "id":162,
+                 "name":"wolf",
+                 "properties":[
+                        {
+                         "name":"drops",
+                         "type":"string",
+                         "value":"[241,280]"
+                        }, 
+                        {
+                         "name":"health",
+                         "type":"int",
+                         "value":8
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":288
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":5,
- "nextobjectid":161,
+ "nextlayerid":6,
+ "nextobjectid":163,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.0",

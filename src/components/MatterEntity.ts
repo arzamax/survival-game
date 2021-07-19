@@ -5,6 +5,7 @@ type TMatterEntity = {
   scene: Phaser.Scene;
   x: number;
   y: number;
+  name: string;
   texture: string;
   frame?: string | number;
   depth?: number;
@@ -19,18 +20,20 @@ export class MatterEntity extends Phaser.Physics.Matter.Sprite {
   private readonly sound?: Phaser.Sound.BaseSound;
   private health: number;
 
-  constructor({ scene, x, y, texture, frame, drops, health, soundKey, depth }: TMatterEntity) {
+  constructor({ scene, x, y, texture, name, frame, drops, health, soundKey, depth }: TMatterEntity) {
     super(scene.matter.world, x, y, texture, frame);
 
     this.x += this.width / 2;
     this.y -= this.height / 2;
     this.drops = drops;
     this.health = health;
+    this.name = name;
     this.depth = depth || 1;
     this._position = new Phaser.Math.Vector2(this.x, this.y);
     if (soundKey) {
       this.sound = this.scene.sound.add(soundKey);
     }
+
     this.scene.add.existing(this);
   }
 
@@ -47,17 +50,17 @@ export class MatterEntity extends Phaser.Physics.Matter.Sprite {
     return this.health <= 0;
   }
 
-  public onDeath = () => {};
+  public onDeath() {};
 
   public hit() {
     this.health--;
     if (this.sound) this.sound.play();
 
-    if (this.dead && this.drops) {
+    if (this.dead) {
       for (const drop of this.drops) {
         new Drop(this.scene, this.x, this.y, drop);
       }
-      this.destroy();
+      this.onDeath();
     }
   }
 }

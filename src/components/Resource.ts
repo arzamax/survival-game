@@ -14,6 +14,7 @@ export class Resource extends MatterEntity {
       x: resource.x!,
       y: resource.y!,
       texture: 'resources',
+      name: resource.type,
       soundKey: SOUND_KEY,
       frame: resource.type,
       health: HEALTH,
@@ -32,5 +33,9 @@ export class Resource extends MatterEntity {
   static preload(scene: Phaser.Scene) {
     scene.load.atlas('resources', '/assets/resources_sprite.png', '/assets/resources_atlas.json');
     scene.load.audio(SOUND_KEY, '/assets/resource_hit.wav');
+  }
+
+  public onDeath() {
+    this.destroy();
   }
 }

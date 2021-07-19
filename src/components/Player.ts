@@ -15,6 +15,7 @@ export class Player extends MatterEntity {
       x,
       y,
       texture: 'player',
+      name: 'player',
       frame: 'herald_idle_1',
       health: 2,
       drops: []
@@ -37,7 +38,9 @@ export class Player extends MatterEntity {
     this.weapon.setOrigin(0.25, 0.75);
     this.weapon.setScale(0.8);
     this.scene.add.existing(this.weapon);
-    this.scene.input.on('pointermove', (pointer : { worldX: number }) => this.setFlipX(pointer.worldX < this.x));
+    this.scene.input.on('pointermove', (pointer : { worldX: number }) => {
+      if (!this.dead) this.setFlipX(pointer.worldX < this.x)
+    });
 
     this.inputKeys = this.scene.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -107,32 +110,41 @@ export class Player extends MatterEntity {
     scene.load.spritesheet('items', '/assets/items.png', { frameWidth: 32, frameHeight: 32 });
   }
 
+  public onDeath() {
+    this.anims.stop();
+    this.setTexture('items', 0);
+    this.setOrigin(0.5);
+    this.weapon.destroy();
+  }
+
   public update() {
-    const playerVelocity = new Phaser.Math.Vector2();
+    if (!this.dead) {
+      const playerVelocity = new Phaser.Math.Vector2();
 
-    if (this.inputKeys?.left.isDown) {
-      playerVelocity.x = -1;
-    } else if (this.inputKeys?.right.isDown) {
-      playerVelocity.x = 1;
+      if (this.inputKeys?.left.isDown) {
+        playerVelocity.x = -1;
+      } else if (this.inputKeys?.right.isDown) {
+        playerVelocity.x = 1;
+      }
+
+      if (this.inputKeys?.up.isDown) {
+        playerVelocity.y = -1;
+      } else if (this.inputKeys?.down.isDown) {
+        playerVelocity.y = 1;
+      }
+
+      playerVelocity.normalize();
+      playerVelocity.scale(3);
+      this.setVelocity(playerVelocity.x, playerVelocity.y);
+
+      if (this.velocity.x !== 0 || this.velocity.y !== 0) {
+        this.anims.play('player_walk', true);
+      } else {
+        this.anims.play('player_idle', true);
+      }
+
+      this.weapon?.setPosition(this.x, this.y);
+      this.weaponRotate();
     }
-
-    if (this.inputKeys?.up.isDown) {
-      playerVelocity.y = -1;
-    } else if (this.inputKeys?.down.isDown) {
-      playerVelocity.y = 1;
-    }
-
-    playerVelocity.normalize();
-    playerVelocity.scale(3);
-    this.setVelocity(playerVelocity.x, playerVelocity.y);
-
-    if (this.velocity.x !== 0 || this.velocity.y !== 0) {
-      this.anims.play('player_walk', true);
-    } else {
-      this.anims.play('player_idle', true);
-    }
-
-    this.weapon?.setPosition(this.x, this.y);
-    this.weaponRotate();
   }
 }
